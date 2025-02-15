@@ -1,3 +1,5 @@
+install these:
+
 pip3 install fastapi  
 pip3 install uvicorn  
 uvicorn song:app --reload  
