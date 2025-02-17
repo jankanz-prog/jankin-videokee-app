@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from module.common_functions import read_json_file
@@ -10,7 +10,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=['*']
+    allow_origins=['*'],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 songs = read_json_file("./data/songs.json")
@@ -77,16 +80,12 @@ async def getSongToPlay():
 
 @app.post("/login")
 async def login(login: Login):
-
    users = read_json_file("./data/users.json")
-
-   result = {"message": "Access denied."}
+   result = {"message": "Access denied.", "status": "error"}
    for user in users["users"]:
       if user['email'] == login.email and user['password'] == login.password:
-         result = {"email": login.email, "message": "Access granted."}
+         result = {"email": login.email, "message": "Access granted.", "status": "success"}
          break
-
-   
    return result
 
    
