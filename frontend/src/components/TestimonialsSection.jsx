@@ -27,24 +27,24 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="testimonials-section py-5">
+    <section className="landing-page-testimonials-section py-5">
       <div className="container">
         <h2 className="text-center mb-5">What Our Users Say</h2>
-        <div className="row">
+        <div className="row g-4">
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="col-md-4 mb-4">
-              <div className="testimonial-card">
-                <div className="testimonial-image-wrapper">
+              <div className="landing-page-testimonial-card">
+                <div className="landing-page-testimonial-image-wrapper">
                   <img
                     src={testimonial.image}
                     alt={testimonial.name}
-                    className="testimonial-image"
+                    className="landing-page-testimonial-image"
                   />
                 </div>
                 <div className="testimonial-content">
-                  <p className="testimonial-quote">"{testimonial.quote}"</p>
-                  <h5 className="testimonial-name">{testimonial.name}</h5>
-                  <p className="testimonial-role">{testimonial.role}</p>
+                  <p className="landing-page-testimonial-quote">"{testimonial.quote}"</p>
+                  <h4 className="landing-page-testimonial-name">{testimonial.name}</h4>
+                  <p className="landing-page-testimonial-role">{testimonial.role}</p>
                 </div>
               </div>
             </div>

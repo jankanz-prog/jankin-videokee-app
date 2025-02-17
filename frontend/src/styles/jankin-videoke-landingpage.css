@@ -93,31 +93,16 @@
 
 /* Feature Section Styles */
 .landing-page-feature-section {
-  background-color: #ffffff;
-  padding: 100px 0;
-  position: relative;
+  background: #f8f9fa;
+  padding: 80px 0;
 }
 
 .landing-page-feature-card {
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  padding: 2rem;
   background: white;
-  position: relative;
-  overflow: hidden;
-}
-
-.landing-page-feature-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #6a11cb, #2575fc);
-  transform: scaleX(0);
-  transform-origin: left;
+  border-radius: 15px;
+  padding: 2rem;
+  height: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
@@ -125,16 +110,67 @@
   transform: translateY(-10px);
 }
 
-.landing-page-feature-card:hover::before {
-  transform: scaleX(1);
-}
-
 .landing-page-feature-icon {
   font-size: 2.5rem;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #6a11cb;
   margin-bottom: 1.5rem;
+}
+
+/* Testimonials Section */
+.landing-page-testimonials-section {
+  background: #f8f9fa;
+  padding: 100px 0;
+}
+
+.landing-page-testimonial-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  height: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  text-align: center;
+  position: relative;
+  margin-top: 60px;
+}
+
+.landing-page-testimonial-card:hover {
+  transform: translateY(-10px);
+}
+
+.landing-page-testimonial-image-wrapper {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: -80px auto 20px;
+  border: 5px solid white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.landing-page-testimonial-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.landing-page-testimonial-quote {
+  color: #666;
+  font-style: italic;
+  margin: 1.5rem 0;
+  line-height: 1.6;
+}
+
+.landing-page-testimonial-name {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.landing-page-testimonial-role {
+  color: #6a11cb;
+  font-size: 0.9rem;
+  margin-bottom: 0;
 }
 
 /* Button Styles */
