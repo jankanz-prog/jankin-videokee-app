@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from model.reservation import Reservation
 from module.SongHandler import reservations, getSongToPlayFromReservations
+from model.UserLogin import Login 
 
 app = FastAPI()
 
@@ -76,6 +77,22 @@ async def put(reserve: Reservation):
 @app.get("/getSongToPlay")
 async def getSongToPlay():
    return getSongToPlayFromReservations()
+
+@app.post("/login")
+async def login(login: Login):
+
+   with open("./data/users.json", "r") as file:
+      users = json.load(file)
+
+   result = {"message": "Access denied."}
+   for user in users["users"]:
+      if user['username'] == login.username and user['password'] == login.password:
+         result = {"username": login.username, "message": "Access granted."}
+         break
+
+   
+   return result
+
    
 
  
