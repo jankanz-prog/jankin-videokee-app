@@ -1,4 +1,4 @@
-.scroll-to-top {
+.landing-page-scroll-to-top {
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -18,7 +18,7 @@
   box-shadow: 0 4px 10px rgba(106, 17, 203, 0.3);
 }
 
-.scroll-to-top:hover {
+.landing-page-scroll-to-top:hover {
   transform: translateY(-5px);
   background: #5a0cb2;
   box-shadow: 0 6px 15px rgba(106, 17, 203, 0.4);

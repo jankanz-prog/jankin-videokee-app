@@ -4,13 +4,21 @@ import '../styles/scroll-to-top.css';
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const toggleVisibility = () => {
-    if (window.pageYOffset > 300) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', toggleVisibility);
+
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+    };
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -19,18 +27,11 @@ const ScrollToTop = () => {
     });
   };
 
-  useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
-    return () => {
-      window.removeEventListener('scroll', toggleVisibility);
-    };
-  }, []);
-
   return (
     <>
       {isVisible && (
         <button
-          className="scroll-to-top"
+          className="landing-page-scroll-to-top"
           onClick={scrollToTop}
           aria-label="Scroll to top"
         >

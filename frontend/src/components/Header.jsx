@@ -3,14 +3,14 @@ import '../styles/header.css';
 
 const Header = () => {
   return (
-    <header className="site-header">
-      <nav className="navbar navbar-expand-lg">
+    <header className="landing-page-site-header">
+      <nav className="landing-page-navbar navbar navbar-expand-lg">
         <div className="container">
           <a className="navbar-brand" href="/">
             <img 
               src="src/assets/images/jankinvideo_logo.png" 
               alt="Jankin Videoke" 
-              className="header-logo"
+              className="landing-page-header-logo"
             />
           </a>
           <button 
@@ -24,19 +24,19 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a className="nav-link" href="/">Home</a>
+                <a className="landing-page-nav-link" href="/">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/features">Features</a>
+                <a className="landing-page-nav-link" href="/features">Features</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/pricing">Pricing</a>
+                <a className="landing-page-nav-link" href="/pricing">Pricing</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/contact">Contact</a>
+                <a className="landing-page-nav-link" href="/contact">Contact</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link btn btn-primary text-white" href="/login">Login</a>
+                <a className="landing-page-nav-link btn btn-primary text-white" href="/login">Login</a>
               </li>
             </ul>
           </div>

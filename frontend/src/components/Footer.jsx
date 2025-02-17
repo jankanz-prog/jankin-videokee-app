@@ -3,7 +3,7 @@ import '../styles/footer.css';
 
 const Footer = () => {
   return (
-    <footer className="site-footer">
+    <footer className="landing-page-site-footer">
       <div className="container">
         <div className="row">
           <div className="col-md-4 mb-4 mb-md-0">
@@ -21,7 +21,7 @@ const Footer = () => {
           </div>
           <div className="col-md-4">
             <h5>Connect With Us</h5>
-            <div className="social-links">
+            <div className="landing-page-social-links">
               <a href="#" className="me-3"><i className="bi bi-facebook"></i></a>
               <a href="#" className="me-3"><i className="bi bi-twitter"></i></a>
               <a href="#" className="me-3"><i className="bi bi-instagram"></i></a>

@@ -1,4 +1,4 @@
-.site-header {
+.landing-page-site-header {
   position: fixed;
   top: 0;
   left: 0;
@@ -10,33 +10,33 @@
   transition: all 0.3s ease;
 }
 
-.header-logo {
+.landing-page-header-logo {
   height: 40px;
   width: auto;
 }
 
-.navbar {
+.landing-page-navbar {
   padding: 1rem 0;
 }
 
-.nav-link {
+.landing-page-nav-link {
   color: #333;
   font-weight: 500;
   margin: 0 0.5rem;
   transition: color 0.3s ease;
 }
 
-.nav-link:hover {
+.landing-page-nav-link:hover {
   color: #6a11cb;
 }
 
-.nav-link.btn {
+.landing-page-nav-link.btn {
   padding: 0.5rem 1.5rem;
   margin-left: 1rem;
 }
 
 @media (max-width: 991px) {
-  .nav-link.btn {
+  .landing-page-nav-link.btn {
     margin: 0.5rem 0;
     display: inline-block;
   }

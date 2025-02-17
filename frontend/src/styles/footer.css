@@ -1,34 +1,34 @@
-.site-footer {
+.landing-page-site-footer {
   background: #f8f9fa;
   padding: 4rem 0 2rem;
   color: #333;
 }
 
-.site-footer h5 {
+.landing-page-site-footer h5 {
   color: #6a11cb;
   margin-bottom: 1.5rem;
   font-weight: 600;
 }
 
-.site-footer ul li {
+.landing-page-site-footer ul li {
   margin-bottom: 0.5rem;
 }
 
-.site-footer a {
+.landing-page-site-footer a {
   color: #666;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.site-footer a:hover {
+.landing-page-site-footer a:hover {
   color: #6a11cb;
 }
 
-.social-links a {
+.landing-page-social-links a {
   font-size: 1.5rem;
   color: #6a11cb;
 }
 
-.social-links a:hover {
+.landing-page-social-links a:hover {
   color: #5a0cb2;
 }
