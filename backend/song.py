@@ -1,7 +1,7 @@
-import json
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from module.common_functions import read_json_file
 from model.reservation import Reservation
 from module.SongHandler import reservations, getSongToPlayFromReservations
 from model.UserLogin import Login 
@@ -13,10 +13,7 @@ app.add_middleware(
     allow_origins=['*']
 )
 
-
-
-with open("./data/songs.json", "r") as file:
-   songs = json.load(file)
+songs = read_json_file("./data/songs.json")
 
 @app.get("/songs")
 async def getSongs():
@@ -81,13 +78,12 @@ async def getSongToPlay():
 @app.post("/login")
 async def login(login: Login):
 
-   with open("./data/users.json", "r") as file:
-      users = json.load(file)
+   users = read_json_file("./data/users.json")
 
    result = {"message": "Access denied."}
    for user in users["users"]:
-      if user['username'] == login.username and user['password'] == login.password:
-         result = {"username": login.username, "message": "Access granted."}
+      if user['email'] == login.email and user['password'] == login.password:
+         result = {"email": login.email, "message": "Access granted."}
          break
 
    
