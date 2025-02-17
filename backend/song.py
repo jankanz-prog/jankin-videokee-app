@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from model.reservation import Reservation
+from modules.SongHandler import reservations, getSongToPlayFromReservations
 
 app = FastAPI()
 
@@ -11,7 +12,7 @@ app.add_middleware(
     allow_origins=['*']
 )
 
-reservations = []
+
 
 with open("./data/songs.json", "r") as file:
    songs = json.load(file)
@@ -72,8 +73,10 @@ async def put(reserve: Reservation):
 
    return {"reservations": reservations}
 
+@app.get("/getSongToPlay")
+async def getSongToPlay():
+   return getSongToPlayFromReservations()
    
-
 
  
 
