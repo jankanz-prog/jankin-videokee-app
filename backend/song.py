@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from model.reservation import Reservation
-from modules.SongHandler import reservations, getSongToPlayFromReservations
+from module.SongHandler import reservations, getSongToPlayFromReservations
 
 app = FastAPI()
 
