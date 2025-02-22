@@ -1,10 +1,14 @@
 {
     "users": [
       {
+        "user_id": "001",
+        "username": "ronie",
         "email": "ronie.gadiane@gmail.com",
         "password": "jankin"
       },
       {
+        "user_id": "002",
+        "username": "jankin",
         "email": "jkpgadiane@gmail.com",
         "password": "jankin"
       }

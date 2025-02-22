@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from module.common_functions import read_json_file
 from model.reservation import Reservation
-from module.SongHandler import reservations, getSongToPlayFromReservations
+from module.SongHandler import reservations, getSongToPlayFromReservations, reservation_details
 from model.UserLogin import Login 
 
 app = FastAPI()
@@ -22,11 +22,28 @@ songs = read_json_file("./data/songs.json")
 async def getSongs():
    return {"songs": songs["songs"]}
 
+@app.get("/reservations")
+async def getReservations():
+   return {"reservations": reservation_details} 
+
 @app.get("/song/{code}")
 async def getSong(code):
    for song in songs["songs"]:
       if song['code'] == code:
          return song
+   return None
+
+def getUsername(user_id):
+   users = read_json_file("./data/users.json")
+   for user in users["users"]:
+      if user['user_id'] == user_id:
+         return user['username']
+   return None
+
+def getSongTitle(code):
+   for song in songs["songs"]:
+      if song['code'] == code:
+         return song['title']
    return None
 
 @app.post("/song/reserve/add")
@@ -43,13 +60,16 @@ async def add(reserve: Reservation):
             reserve.id = len(reservations) + 1
             reservations.append(reserve) 
             song_found = True
+
+            reserve_details = {"username": getUsername(reserve.user_id), "songTitle": getSongTitle(reserve.code)}
+            reservation_details.append(reserve_details)
             break
 
          
    if not song_found:
       return {"message": "Song not found."} 
 
-   return {"reservations": reservations} 
+   return {"reservations": reservation_details} 
 
 @app.delete("/song/reserve/delete}")
 async def delete(reserve: Reservation):
