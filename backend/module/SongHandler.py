@@ -4,7 +4,8 @@ from fastapi.responses import FileResponse
 
 app = FastAPI()
 
-reservations = ["So Young.mp4"]
+reservations = []
+reservation_details = []
 
 def getSongToPlayFromReservations():
     if len(reservations) == 0:
