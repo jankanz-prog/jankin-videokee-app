@@ -7,24 +7,70 @@
       "lang": "English"
     },
     {
-        "code": "0002",
-        "title": "APT",
-        "artist": "Bruno Mars",
-        "lang": "English"
-      }
-      ,
+      "code": "0002",
+      "title": "APT",
+      "artist": "Bruno Mars",
+      "lang": "English"
+    },
     {
-        "code": "0003",
-        "title": "Grenade",
-        "artist": "Bruno Mars",
-        "lang": "English"
-      }
-      ,
+      "code": "0003",
+      "title": "Grenade",
+      "artist": "Bruno Mars",
+      "lang": "English"
+    },
     {
-        "code": "0004",
-        "title": "So Young",
-        "artist": "Corrs",
-        "lang": "English"
-      }
+      "code": "0004",
+      "title": "So Young",
+      "artist": "Corrs",
+      "lang": "English"
+    },
+    {
+      "code": "0005",
+      "title": "Akong Kalibutan",
+      "artist": "Max Surban",
+      "lang": "Cebuano"
+    },
+    {
+      "code": "0006",
+      "title": "Knife",
+      "artist": "Elsie",
+      "lang": "English"
+    },
+    {
+      "code": "0007",
+      "title": "When you say nothing at all",
+      "artist": "Ronan Keating",
+      "lang": "English"
+    },
+    {
+      "code": "0008",
+      "title": "Line to Heaven",
+      "artist": "Introvoys",
+      "lang": "English"
+    },
+    {
+      "code": "0009",
+      "title": "You",
+      "artist": "Carpenters",
+      "lang": "English"
+    },
+    {
+      "code": "0010",
+      "title": "Lakbay-Lakbay",
+      "artist": "Aggressive Audio",
+      "lang": "English"
+    },
+    {
+      "code": "0011",
+      "title": "Oh Kinabuhi",
+      "artist": "Max Surban",
+      "lang": "Cebuano"
+    },
+    {
+      "code": "0012",
+      "title": "Senior Citizen",
+      "artist": "Max Surban",
+      "lang": "Cebuano"
+    }
   ]
 }
