@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { Router, useNavigate } from "react-router-dom";
 import "../styles/login.css";
+import { getBASEURL } from "../common/utility.js";
+import { useDispatch } from "react-redux";
+import { setUserId } from "../redux/userlog";
+
+
+
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [responseMessage, setResponseMessage] = useState("");
   const [formData, setFormData] = useState({
     email: "",
@@ -19,9 +26,12 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    
+
     const postData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/login", {
+        const response = await fetch(`${getBASEURL()}/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -32,6 +42,7 @@ const LoginPage = () => {
         const data = await response.json();
         setResponseMessage(`${data.message}`);
         if (data.status === "success") {
+          dispatch(setUserId(data.userid));
           navigate("/home");
         }
       } catch (error) {

@@ -1,16 +1,25 @@
 {
     "users": [
       {
-        "user_id": "001",
+        "userid": "001",
+        "fullname": "Ronie C. Gadiane",
         "username": "ronie",
         "email": "ronie.gadiane@gmail.com",
         "password": "jankin"
       },
       {
-        "user_id": "002",
+        "userid": "002",
+        "fullname": "John Karl P. Gadiane",
         "username": "jankin",
         "email": "jkpgadiane@gmail.com",
         "password": "jankin"
+      },
+      {
+        "userid": "003",
+        "fullname": "Elsie V. Ebrado",
+        "username": "elsie",
+        "email": "ev.ebrado@gmail.com",
+        "password": "relse"
       }
     ]
   }
