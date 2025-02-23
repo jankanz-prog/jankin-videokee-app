@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Router, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import { getBASEURL } from "../common/utility.js";
 import { useDispatch } from "react-redux";
 import { setUserId } from "../redux/userlog";
-
-
-
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -16,6 +15,8 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
+  const [show, setShow] = useState(false);
+  const [modalInfo, setModalInfo] = useState({"title": "", "message": "", "navigate": ""});
 
   const handleChange = (e) => {
     setFormData({
@@ -26,8 +27,6 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    
 
     const postData = async () => {
       try {
@@ -43,10 +42,14 @@ const LoginPage = () => {
         setResponseMessage(`${data.message}`);
         if (data.status === "success") {
           dispatch(setUserId(data.userid));
-          navigate("/home");
+          setModalInfo({"title": "Login", "message": "Access Granted!", "navigate": "/home"});
         }
+        else if (data.status === "error") {
+          setModalInfo({"title": "Login", "message": data.message, "navigate": ""});
+          }
+          setShow(true);
       } catch (error) {
-        setResponseMessage(`${error}`);
+        console.error("Error:", error);        
       }
     };
 
@@ -55,6 +58,18 @@ const LoginPage = () => {
 
   return (
     <div className="login-container">
+      <Modal show={show} onHide={() => setShow(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>{modalInfo["title"]}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalInfo["message"]}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => {setShow(false); navigate(modalInfo["navigate"]); }}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      ;
       <div className="login-card">
         <div className="login-header">
           <img
@@ -106,8 +121,6 @@ const LoginPage = () => {
             Sign In
           </button>
         </form>
-        <div className="text-center">{responseMessage}</div>
-
         <div className="login-footer">
           <p>
             Don't have an account? <a href="/signup">Sign up</a>
