@@ -58,7 +58,6 @@ const HomePage = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         setContents(selection === 1 ? data["songs"] : data["reservations"]);
         setLoading(false);
       })
@@ -74,7 +73,7 @@ const HomePage = () => {
         <h4>Available Songs:</h4>
         <div className="table-container">
           <table width={"100%"} border={1}>
-            <tbody>
+            <tbody key="song-list">
               <tr>
                 <th style={{ width: "10%" }}>Code</th>
                 <th style={{ width: "50%" }}>Title</th>
@@ -106,7 +105,7 @@ const HomePage = () => {
         <h4>Reservations:</h4>
         <div className="table-container">
           <table width={"100%"} border={1}>
-            <tbody>
+            <tbody key="reservation-list">
               <tr>
                 <th style={{ width: "60%" }}>Title</th>
                 <th style={{ width: "30%" }}>Reserved by</th>
