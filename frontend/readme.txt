@@ -6,3 +6,7 @@ to allow react-app accessible by another pc:
     run the ff:
         npm run build
         npx serve -s dist
+
+
+for new environment, execute below:
+    npm install

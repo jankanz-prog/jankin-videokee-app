@@ -6,16 +6,17 @@ import { Router, useNavigate } from "react-router-dom";
 
 let userId = null;
 
-const reserveSong = (songcode) => {
+const reserveSong = (songcode, title) => {
   fetch(`${getBASEURL()}/song/reserve/add`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      id: 0,
+      id: 0, 
       code: songcode,
       userid: userId,
+      songTitle: title
     }),
   })
     .then((response) => {
@@ -32,10 +33,10 @@ const reserveSong = (songcode) => {
     });
 };
 
-const HomePage = () => {
+const SongListing = () => {
   const [contents, setContents] = useState([]);
   const [selection, setSelection] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -44,12 +45,11 @@ const HomePage = () => {
     navigate("/login");
   }
 
-  let content = null;
-
-  let url =
-    selection === 1 ? `${getBASEURL()}/songs` : `${getBASEURL()}/reservations`;
+  let content = null;  
 
   useEffect(() => {
+    const url = selection === 1 ? `${getBASEURL()}/songs` : `${getBASEURL()}/reservations`;
+    
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -60,11 +60,11 @@ const HomePage = () => {
       .then((data) => {
         console.log(data);
         setContents(selection === 1 ? data["songs"] : data["reservations"]);
-        setLoading(false);
+        setLoaded(true);
       })
       .catch((error) => {
         setError(error);
-        setLoading(false);
+        setLoaded(false);
       });
   }, [selection]);
 
@@ -75,7 +75,7 @@ const HomePage = () => {
         <div className="table-container">
           <table width={"100%"} border={1}>
             <tbody>
-              <tr>
+              <tr key="header">
                 <th style={{ width: "10%" }}>Code</th>
                 <th style={{ width: "50%" }}>Title</th>
                 <th style={{ width: "20%" }}>Artist</th>
@@ -83,13 +83,13 @@ const HomePage = () => {
                 <th style={{ width: "10%" }}>Action</th>
               </tr>
               {contents.map((data) => (
-                <tr>
+                <tr key={data.code}>
                   <td>{data.code}</td>
                   <td>{data.title}</td>
                   <td>{data.artist}</td>
                   <td>{data.lang}</td>
                   <td>
-                    <button onClick={() => reserveSong(data.code)}>
+                    <button onClick={() => reserveSong(data.code, data.title)}>
                       Reserve
                     </button>
                   </td>
@@ -107,13 +107,13 @@ const HomePage = () => {
         <div className="table-container">
           <table width={"100%"} border={1}>
             <tbody>
-              <tr>
+              <tr key="header">
                 <th style={{ width: "60%" }}>Title</th>
                 <th style={{ width: "30%" }}>Reserved by</th>
                 <th style={{ width: "10%" }}>Action</th>
               </tr>
               {contents.map((data) => (
-                <tr>
+                <tr key={data.id}>
                   <td>{data.songTitle}</td>
                   <td>{data.username}</td>
 
@@ -155,4 +155,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default SongListing;

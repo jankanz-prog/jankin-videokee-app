@@ -1,9 +1,76 @@
-node_modules/.package-lock.json
-backend/__pycache__/song.cpython-313.pyc
-backend/model/__pycache__/reservation.cpython-313.pyc
-backend/model/__pycache__/UserLogin.cpython-313.pyc
-backend/module/__pycache__/SongHandler.cpython-313.pyc
-node_modules/@popperjs/core/index.d.ts
+# ==================== Node.js / NPM ====================
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+dist/
+dist-ssr/
+build/
+.next/
+out/
+*.npm-debug.log*
+*.yarn-error.log*
+*.pnpm-debug.log*
+*.lerna-debug.log*
+
+# ==================== Python ====================
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+virtualenv/
+
+# ==================== Environment & Secrets ====================
+.env
+.env.local
+.env.*.local
+.env.production.local
+
+# ==================== IDE & Editors ====================
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+*.iml
+
+# ==================== OS Files ====================
+Thumbs.db
+.DS_Store
+*.bak
+
+# ==================== Build & Dist ====================
+*.local
+coverage/
+.coverage
+htmlcov/
+
+# ==================== Misc ====================
+.cache/
+*.tmp
+*.temp
 node_modules/@popperjs/core/LICENSE.md
 node_modules/@popperjs/core/package.json
 node_modules/@popperjs/core/README.md

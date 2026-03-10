@@ -17,3 +17,7 @@ to run/deploy api on a server:
 
 
 http://127.0.0.1:8000/docs#
+
+
+for new environment, simply run the command below to install of needed apps/frameworks:
+ pip install -r .\requirement.txt

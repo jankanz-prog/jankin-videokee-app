@@ -4,6 +4,7 @@ import "../styles/login.css";
 import { getBASEURL } from "../common/utility.js";
 import { useDispatch } from "react-redux";
 import { setUserId } from "../redux/userlog";
+import MainSelection from "./MainSelection.jsx";
 
 
 
@@ -43,7 +44,7 @@ const LoginPage = () => {
         setResponseMessage(`${data.message}`);
         if (data.status === "success") {
           dispatch(setUserId(data.userid));
-          navigate("/home");
+          navigate("/mainselection");
         }
       } catch (error) {
         setResponseMessage(`${error}`);

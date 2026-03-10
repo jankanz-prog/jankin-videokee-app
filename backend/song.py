@@ -1,22 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import os
+from fastapi.responses import FileResponse
 
 from module.common_functions import read_json_file
 from model.reservation import Reservation
-from module.SongHandler import (
-    reservations,
-    getSongToPlayFromReservations,
-    reservation_details,
-)
 from model.UserLogin import Login
 
 app = FastAPI()
-
-# Allow frontend access
-origins = [
-    "http://localhost:5173",  # Local development
-    "http://192.168.1.14:5173",  # Change this to your IP
-]
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,9 +15,17 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["Content-Disposition"],
 )
 
+# Allow frontend access
+origins = [
+    "http://localhost:5173",  # Local development
+    "http://192.168.1.14:5173",  # Change this to your IP
+]
+
 songs = read_json_file("./data/songs.json")
+reservations = []
 
 
 @app.get("/songs")
@@ -36,7 +35,7 @@ async def getSongs():
 
 @app.get("/reservations")
 async def getReservations():
-    return {"reservations": reservation_details}
+    return {"reservations": reservations}
 
 
 @app.get("/song/{code}")
@@ -64,6 +63,7 @@ def getSongTitle(code):
 
 @app.post("/song/reserve/add")
 async def add(reserve: Reservation):
+    print(f"[song.py] Received reservation request: {reserve}", flush=True)
     user_reservation = False
     song_found = False
     for reservation in reservations:
@@ -76,23 +76,20 @@ async def add(reserve: Reservation):
         for song in songs["songs"]:
             if song["code"] == reserve.code:
                 reserve.id = len(reservations) + 1
+                reserve.username = getUsername(reserve.userid)
+                reserve.songTitle = getSongTitle(reserve.code)
                 reservations.append(reserve)
                 song_found = True
-
-                reserve_details = {
-                    "username": getUsername(reserve.userid),
-                    "songTitle": getSongTitle(reserve.code),
-                }
-                reservation_details.append(reserve_details)
+                
                 break
 
     if not song_found:
         return {"message": "Song not found."}
+    print(f"[song.py] Reservations: {reservations}", flush=True)   
+    return {"reservations": reservations}
 
-    return {"reservations": reservation_details}
 
-
-@app.delete("/song/reserve/delete}")
+@app.delete("/song/reserve/delete")
 async def delete(reserve: Reservation):
     for reservation in reservations:
         if reserve.id == reservation.id:
@@ -115,13 +112,39 @@ async def put(reserve: Reservation):
             reservations.remove(reservation)
             reservations.append(reserve)
             break
-
+    print(f"[song.py] Reservations: {reservations}", flush=True)        
     return {"reservations": reservations}
 
 
 @app.get("/getSongToPlay")
 async def getSongToPlay():
-    return getSongToPlayFromReservations()
+        if len(reservations) == 0:
+            print("[SongHandler] No reservations in queue", flush=True)
+            return {"message": "No songs to play."}
+        
+        print(f"[SongHandler] current reservations: {reservations}", flush=True)
+        reservation_info = reservations.pop(0)
+        print(f"[SongHandler] Popped reservation: {reservation_info}", flush=True)
+        
+        # Handle both dict and Pydantic model
+        if hasattr(reservation_info, 'songTitle'):
+            file_song = f"{reservation_info.songTitle}.mp4"
+        else:
+            file_song = f"{reservation_info['songTitle']}.mp4"
+        
+        file_path = f"./data/songfiles/{file_song}"
+        print(f"[SongHandler] Looking for file: {file_path}", flush=True)
+        
+        if not os.path.exists(file_path):
+            print(f"[SongHandler] File not found: {file_path}", flush=True)
+            return {"message": f"Song file not found: {file_song}"}
+        
+        print(f"[SongHandler] Playing song: {file_song}", flush=True)
+        print(f"[SongHandler] Remaining reservations: {len(reservations)}", flush=True)
+        
+        return FileResponse(file_path, filename=file_song, media_type="video/mp4")
+    
+    
 
 
 @app.post("/login")

@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
-import HomePage from "./pages/HomePage";
+import SongListing from "./pages/SongListing";
+import MainSelection from "./pages/MainSelection";
+import SongPlayer from "./pages/SongPlayer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./index.css";
@@ -16,10 +17,6 @@ import store from "./redux/store";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LandingPage />,
-  },
-  {
-    path: "/login",
     element: <LoginPage />,
   },
   {
@@ -27,9 +24,18 @@ const router = createBrowserRouter([
     element: <SignupPage />,
   },
   {
-    path: "/home",
-    element: <HomePage />,
+    path: "/mainselection",
+    element: <MainSelection />,
   },
+  {
+    path: "/songlisting",
+    element: <SongListing />,
+  }
+  ,
+  {
+    path: "/songplayer",
+    element: <SongPlayer />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
